@@ -1,0 +1,52 @@
+{
+  "name": "jsonldbuilder",
+  "description": "json-ld builder",
+  "version": "1.0.0-alpha.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && node ./build_config/prod.js",
+    "clean": "rimraf build coverage",
+    "prepare": "npm run clean && npm run lint && npm run test && npm run build",
+    "lint": "eslint --ext .jsx --ext .js src __tests__ examples --fix",
+    "pretest": "npm run lint",
+    "test": "cross-env NODE_ENV=test jest -u",
+    "test:watch": "npm run test -- --watch",
+    "test:cov": "npm test -- --coverage",
+    "coveralls": "npm run test:cov && cat ./coverage/lcov.info | coveralls",
+    "dev": "npm run clean && concurrently \"node ./build_config/dev.js\" \"npm run examples\"",
+    "examples": "browser-sync start --server examples --serveStatic 'build' --files 'build' 'examples'"
+  },
+  "author": "Antonio Pangallo",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.9.5",
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "@rollup/plugin-node-resolve": "^7.1.3",
+    "@rollup/plugin-replace": "^2.3.2",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.1.0",
+    "browser-sync": "^2.26.7",
+    "child_process": "^1.0.2",
+    "concurrently": "^5.2.0",
+    "coveralls": "^3.0.13",
+    "cross-env": "^7.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-flowtype": "^4.7.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-prettier": "^3.1.3",
+    "jest": "^25.4.0",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.7.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-terser": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  }
+}

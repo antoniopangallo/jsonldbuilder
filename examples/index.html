@@ -1,0 +1,139 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@16.8.0/umd/react.production.min.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16.8.0/umd/react-dom.production.min.js"></script>
+        <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script crossorigin src="  https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.5/es6-shim.min.js"></script>
+     </head>
+    <body>
+        <div id="jsonldbuilder"></div>
+        <script type="module">
+            import { data } from "./data/data.js";
+            import { create } from "./../index.es.js";
+
+const schemaValidator = {
+    type: {
+        required: true,
+        defaultValue: "AutoDealer",
+        type: "attribute",
+    },
+    "@context": {
+        required: true,
+        defaultValue: "http://schema.org",
+        type: "attribute",
+    },
+    openingHoursSpecification: {
+        required: true,
+        type: "element",
+        arrayOf: {
+            dayofWeek: {
+                required: true,
+                defaultValue: "http://schema.org",
+                type: "attribute",
+            },
+            opens: {
+                required: true,
+                defaultValue: "http://schema.org",
+                type: "attribute",
+            },
+            closes: {
+                required: true,
+                defaultValue: "http://schema.org",
+                type: "attribute",
+            },
+        },
+    },
+    address: {
+        required: true,
+        type: "element",
+        objectOf: {
+            "@type": {
+                required: true,
+                defaultValue: "PostalAddress",
+                type: "attribute",
+            },
+            city: {
+                required: true,
+                type: "attribute",
+            },
+            zip: {
+                required: true,
+                defaultValue: "12345",
+                type: "attribute",
+            },
+        },
+    },
+};
+            
+            const schema = create(schemaValidator).type("AutoDealer");
+
+            const address = schema.address();
+            address.city("Velletri");
+            address.zip("00049");
+
+            // address.street("Via Lepetit, 8");
+            
+            // address.region("Lombardia");
+            // address.countryCode("It");
+            // Object.keys(data.address).forEach(key => address.att(key, data.address[key]))
+            
+            // address.city();
+            // const pippo = address.ele("pippo").type("Pippo");
+
+            data.openingHoursSpecification.forEach(({ dayofWeek, opens, closes }, index) => {
+                const openingHoursSpecification = schema.ele("openingHoursSpecification");
+                openingHoursSpecification.dayofWeek(dayofWeek)
+                openingHoursSpecification.opens(opens)
+                openingHoursSpecification.closes(closes)
+                openingHoursSpecification.ele("other").att("a", index)
+                openingHoursSpecification.ele("other").att("b", index)
+
+            });
+            
+            const output = `<schema>
+                                <address @type="PostalAddress" city="Milano" etc.. />
+                                <openingHoursSpecification dayofWeek="1" opens="2">
+                                    <other a="0" />
+                                    <other b="0" />
+                                <openingHoursSpecification/>
+                                <openingHoursSpecification dayofWeek="1" opens="2">
+                                    <other a="1" />
+                                    <other b="1" />
+                                <openingHoursSpecification/>
+                                <openingHoursSpecification dayofWeek="1" opens="2">
+                                    <other a="2" />
+                                    <other b="2" />
+                                <openingHoursSpecification/>
+                            </schema>`
+ 
+            console.log(address.next().next().next().lastChild().root().get())     
+
+
+            console.log(address.next().lastChild().get())
+            console.log(address.next().next().lastChild().get())     
+            console.log(address.next().next().next().lastChild().get())     
+
+            // console.log(address.next().firstChild().next().next().get())     
+
+            // console.log(address.next().next().firstChild().next().next().get())
+            // console.log(address.firstChild().get())
+            console.log(address.get())
+            console.log(address.next().get())
+            console.log(address.next().next().get())
+            console.log(address.next().next().next().get())
+            console.log(" - - - - - - - - - - - - - - - - - - - - - - - ")
+            console.log(address.next().next().next().get())
+            console.log(address.next().next().next().prev().get())
+            console.log(address.next().next().next().prev().prev().get())
+            console.log(address.next().next().next().prev().prev().prev().get())
+            console.log(" - - - - - - - - - - - - - - - - - - - - - - - ")
+
+ 
+            // console.log("TEST ", schema.next().root().get())
+ 
+            console.log(schema.get());
+            console.log(schema.stringify())
+        </script>
+
+    </body>
+</html>
