@@ -12,12 +12,14 @@
             import { create } from "./../index.es.js";
 
 const schemaValidator = {
-    type: {
+    "@type": {
+        opts: { nameFunc: "type" },
         required: true,
         defaultValue: "AutoDealer",
         type: "attribute",
     },
     "@context": {
+        opts: { nameFunc: "context" },
         required: true,
         defaultValue: "http://schema.org",
         type: "attribute",
@@ -40,6 +42,38 @@ const schemaValidator = {
                 required: true,
                 defaultValue: "http://schema.org",
                 type: "attribute",
+            },
+            other: {
+                required: true,
+                type: "element",
+                arrayOf: {
+                    a: {
+                        required: true,
+                        type: "attribute",
+                    },
+                    b: {
+                        required: true,
+                        type: "attribute",
+                    },
+                    c: {
+                        required: true,
+                        type: "attribute",
+                    },
+                    e: {
+                        required: false,
+                        type: "attribute",
+                    },
+                    d: {
+                        required: false,
+                        type: "element",
+                        arrayOf: {
+                            z: {
+                                required: true,
+                                type: "attribute"
+                            }
+                        }
+                    }  
+                }
             },
         },
     },
@@ -65,11 +99,14 @@ const schemaValidator = {
     },
 };
             
-            const schema = create(schemaValidator).type("AutoDealer");
-
-            const address = schema.address();
+           const schema = create(schemaValidator);
+           schema.type();
+           schema.context();
+           const address = schema.address();
+ 
             address.city("Velletri");
             address.zip("00049");
+
 
             // address.street("Via Lepetit, 8");
             
@@ -85,8 +122,14 @@ const schemaValidator = {
                 openingHoursSpecification.dayofWeek(dayofWeek)
                 openingHoursSpecification.opens(opens)
                 openingHoursSpecification.closes(closes)
-                openingHoursSpecification.ele("other").att("a", index)
-                openingHoursSpecification.ele("other").att("b", index)
+                let c =  openingHoursSpecification.ele("other").att("a", index).att("b", index).att("c", index).att("e", index);
+                // c.ele("d").att("z", index); 
+                // c.ele("d").att("z", index); 
+
+                let d = openingHoursSpecification.ele("other").att("a", index).att("b", index).att("c", index);
+                // d.ele("d").att("z", index)
+                // d.ele("d").att("z", index);
+                // openingHoursSpecification.ele("other").att("a", index).att("b", index).att("c", index).ele("d").att("z", index)
 
             });
             
@@ -128,11 +171,17 @@ const schemaValidator = {
             console.log(address.next().next().next().prev().prev().prev().get())
             console.log(" - - - - - - - - - - - - - - - - - - - - - - - ")
 
- 
             // console.log("TEST ", schema.next().root().get())
- 
+            
+            console.log("TEST DONE ON ", address.next().next().get())
+            console.log("TEST ", address.next().next().valid())
+
+
+            // console.log("TEST DONE ON ", schema.get())
+            // console.log("TEST ", schema.valid())
+
             console.log(schema.get());
-            console.log(schema.stringify())
+            console.log(schema.stringify())  
         </script>
 
     </body>
