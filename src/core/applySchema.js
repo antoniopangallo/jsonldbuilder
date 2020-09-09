@@ -6,7 +6,8 @@ import { isDefined } from "./../utils/";
  * enhancing the Node base API
  *
  * @since 1.0.0
- * @category Function
+ * @function
+ * @ignore
  * @returns {Object} an object which will be spread into createNode
  * @example
  *

@@ -10,7 +10,7 @@ import { prev } from "./prev";
 import { up } from "./up";
 import { get } from "./get";
 import { stringify } from "./stringify";
-import { getRoot } from "./getRoot";
+import { root } from "./root";
 
 export function createNode(
   schemaProps = {},
@@ -35,7 +35,7 @@ export function createNode(
     ...children(stateNode),
     ...firstChild(stateNode),
     ...lastChild(stateNode),
-    ...getRoot(stateNode),
+    ...root(stateNode),
     ...prev(stateNode),
     ...next(stateNode),
     ...up(stateNode),

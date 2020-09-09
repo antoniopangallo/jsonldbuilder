@@ -4,7 +4,7 @@
  *
  *
  * @since 1.0.0
- * @category Function
+ * @function
  * @returns {String} the stringify state of the node
  * @example
  *

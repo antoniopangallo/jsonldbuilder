@@ -6,7 +6,7 @@ import { isDefined, isArray } from "./../utils/";
  *
  *
  * @since 1.0.0
- * @category Function
+ * @function
  * @param {string} key attribute name.
  * @param {string} value the attribute value.
  * @returns {Object} current Node

@@ -4,7 +4,7 @@
  *
  *
  * @since 1.0.0
- * @category Function
+ * @constant
  * @returns {Array} list of children nodes
  * @example
  *
@@ -12,7 +12,6 @@
  * const schema = create();
  * const address = schema.ele("address");
  * console.log(schema.children);
- *
  */
 
 export const children = (nodeProps) => ({

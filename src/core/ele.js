@@ -6,7 +6,7 @@ import { isDefined, isArray } from "./../utils/";
  *
  *
  * @since 1.0.0
- * @category Function
+ * @function
  * @param {string} key the node name.
  * @param {string} [type=object] - force the node to be either an object or array by default.
  * @returns {Object} Node created

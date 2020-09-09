@@ -6,7 +6,7 @@ import { isDefined } from "./../utils/";
  *
  *
  * @since 1.0.0
- * @category Function
+ * @function
  * @returns {(Object|null)} the child node if it has got any or null
  * @example
  *

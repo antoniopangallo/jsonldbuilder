@@ -1,12 +1,11 @@
 import { isDefined } from "./../utils/";
 
 /**
- * Given a nodePros it returns the `lastChild` func
- * once it's called within a node context it returns the last node child if any.
+ * It returns the last node child if any.
  *
  *
  * @since 1.0.0
- * @category Function
+ * @function
  * @returns {(Object|null)} the child node if it has got any or null
  * @example
  *

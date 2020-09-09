@@ -6,7 +6,7 @@ import { isDefined } from "./../utils/";
  *
  *
  * @since 1.0.0
- * @category Function
+ * @function
  * @returns {boolean} true if node is valid, false otherwise
  * @example
  *

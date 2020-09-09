@@ -1,10 +1,10 @@
 /**
  * Given a nodePros it returns the `up` func
- * once it's called within a node context it returns the parent of node.
+ * once it's called within a node context it returns the parent node.
  *
  *
  * @since 1.0.0
- * @category Function
+ * @function
  * @returns {Object} the parent node
  * @example
  *

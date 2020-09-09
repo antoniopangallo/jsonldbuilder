@@ -1,21 +1,20 @@
-<html>
-    <head>
-        <script crossorigin src="https://unpkg.com/react@16.8.0/umd/react.production.min.js"></script>
-        <script crossorigin src="https://unpkg.com/react-dom@16.8.0/umd/react-dom.production.min.js"></script>
-        <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-        <script crossorigin src="  https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.5/es6-shim.min.js"></script>
-     </head>
-    <body>
-        <div id="jsonldbuilder"></div>
-        <script type="module">
-            import { data } from "./data/data.js";
-            import { create } from "./../index.es.js";
+## Installation:
 
+``` sh
+npm install jsonldbuilder
+```
 
+## Initialization
 
+create()
+A JSON-LD document is created by calling the create function.
 
+### Usage:
 
-            const schemaValidator = {
+``` js
+import create from "jsonldbuilder"
+
+const schemaValidator = {
     "@type": {
         opts: { alias: "type" },
         required: true,
@@ -80,12 +79,30 @@ address.zip();
 
 
 const other = schema.other();
-other.a("valueA");
-other.b("valueB");
-other.c("valueC");
+other.a("otherA");
+other.b("otherB");
+other.c("otherC");
 
-console.log( schema.stringify())
-        </script>
+const other1 = schema.other();
+other.a("other1A");
+other.b("other1B");
+other.c("other1C");
+```
 
-    </body>
-</html>
+will result in:
+
+``` json
+{   
+    "@type":"AutoDealer",
+    "@context":"http://schema.org",
+    "address": { 
+        "@type":"PostalAddress",
+        "city":"Milano",
+        "zip":"12345"
+    },
+    "other": [ 
+        {"a": "otherA", "b": "otherB", "c": "otherC"}, 
+        {"a": "other1A", "b": "other1B", "c": "other1C"} 
+    ]
+}
+```
