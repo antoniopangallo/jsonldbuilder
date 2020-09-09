@@ -8,67 +8,62 @@
     <body>
         <div id="jsonldbuilder"></div>
         <script type="module">
-            import { data } from "./data/data.js";
             import { create } from "./../index.es.js";
 
-
-
-
-
             const schemaValidator = {
-    "@type": {
-        opts: { alias: "type" },
-        required: true,
-        defaultValue: "AutoDealer",
-        type: "attribute",
-    },
-    "@context": {
-        opts: { alias: "context" },
-        required: true,
-        defaultValue: "http://schema.org",
-        type: "attribute",
-    },
-    address: { 
-        required: true,
-        type: "element",
-        objectOf: {
-            "@type": {
-                opts: { alias: "type" },
-                required: true,
-                defaultValue: "PostalAddress",
-                type: "attribute",
-            },
-            city: {
-                required: true,
-                defaultValue: "Milano",
-                type: "attribute",
-            },
-            zip: {
-                required: true,
-                defaultValue: "12345",
-                type: "attribute",
+                "@type": {
+                    opts: { alias: "type" },
+                    required: true,
+                    defaultValue: "AutoDealer",
+                    type: "attribute",
+                },
+                "@context": {
+                    opts: { alias: "context" },
+                    required: true,
+                    defaultValue: "http://schema.org",
+                    type: "attribute",
+                },
+                address: { 
+                    required: true,
+                    type: "element",
+                    objectOf: {
+                        "@type": {
+                            opts: { alias: "type" },
+                            required: true,
+                            defaultValue: "PostalAddress",
+                            type: "attribute",
+                        },
+                        city: {
+                            required: true,
+                            defaultValue: "Milano",
+                            type: "attribute",
+                        },
+                        zip: {
+                            required: true,
+                            defaultValue: "12345",
+                            type: "attribute",
+                        }
+                    }
+                },
+                other: {
+                    required: true,
+                    type: "element",
+                    arrayOf: {
+                        a: {
+                            required: true,
+                            type: "attribute",
+                        },
+                        b: {
+                            required: true,
+                            type: "attribute",
+                        },
+                        c: {
+                            required: true,
+                            type: "attribute",
+                        }
+                    }
+                }
             }
-        }
-    },
-    other: {
-        required: true,
-        type: "element",
-        arrayOf: {
-            a: {
-                required: true,
-                type: "attribute",
-            },
-            b: {
-                required: true,
-                type: "attribute",
-            },
-            c: {
-                required: true,
-                type: "attribute",
-            }
-        }
-    }
-}
 
 const schema = create(schemaValidator);
 schema.type();
