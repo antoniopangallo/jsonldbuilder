@@ -8,215 +8,78 @@
     <body>
         <div id="jsonldbuilder"></div>
         <script type="module">
-            import { data } from "./data/data.js";
             import { create } from "./../index.es.js";
 
-
-const schemaValidator = {
-    "@type": {
-        opts: { alias: "type" },
-        required: true,
-        defaultValue: "AutoDealer",
-        type: "attribute",
-    },
-    "@context": {
-        opts: { alias: "context" },
-        required: true,
-        defaultValue: "http://schema.org",
-        type: "attribute",
-    },
-    openingHoursSpecification: {
-        required: true,
-        type: "element",
-        arrayOf: {
-            dayofWeek: {
-                required: true,
-                defaultValue: "http://schema.org",
-                type: "attribute",
-            },
-            opens: {
-                required: true,
-                defaultValue: "http://schema.org",
-                type: "attribute",
-            },
-            closes: {
-                required: true,
-                defaultValue: "http://schema.org",
-                type: "attribute",
-            },
-            other: {
-                required: true,
-                type: "element",
-                arrayOf: {
-                    a: {
-                        required: true,
-                        type: "attribute",
-                    },
-                    b: {
-                        required: true,
-                        type: "attribute",
-                    },
-                    c: {
-                        required: true,
-                        type: "attribute",
-                    },
-                    e: {
-                        required: false,
-                        type: "attribute",
-                    },
-                    d: {
-                        required: false,
-                        type: "element",
-                        arrayOf: {
-                            z: {
-                                required: true,
-                                type: "attribute"
-                            }
+            const schemaValidator = {
+                "@type": {
+                    opts: { alias: "type" },
+                    required: true,
+                    defaultValue: "AutoDealer",
+                    type: "attribute",
+                },
+                "@context": {
+                    opts: { alias: "context" },
+                    required: true,
+                    defaultValue: "http://schema.org",
+                    type: "attribute",
+                },
+                address: { 
+                    required: true,
+                    type: "element",
+                    objectOf: {
+                        "@type": {
+                            opts: { alias: "type" },
+                            required: true,
+                            defaultValue: "PostalAddress",
+                            type: "attribute",
+                        },
+                        city: {
+                            required: true,
+                            defaultValue: "Milano",
+                            type: "attribute",
+                        },
+                        zip: {
+                            required: true,
+                            defaultValue: "12345",
+                            type: "attribute",
                         }
-                    }  
-                }
-            },
-        },
-    },
-    address: {
-        required: true,
-        type: "element",
-        objectOf: {
-            "@type": {
-                opts: { alias: "type" },
-                required: true,
-                defaultValue: "PostalAddress",
-                type: "attribute",
-            },
-            city: {
-                required: true,
-                defaultValue: "Milano",
-                type: "attribute",
-            },
-            zip: {
-                required: true,
-                defaultValue: "12345",
-                type: "attribute",
-            },
-            test: {
-                required: true,
-                type: "element",
-                objectOf: { 
-                    city: {
-                        required: true,
-                        defaultValue: "Zaza",
-                        type: "attribute",
-                    },
-                    zips: {
-                        required: true,
-                        type: "element",
-                        objectOf: { 
-                            code: {
-                                required: true,
-                                defaultValue: "1234",
-                                type: "attribute",
-                            },
+                    }
+                },
+                other: {
+                    required: true,
+                    type: "element",
+                    arrayOf: {
+                        a: {
+                            required: true,
+                            type: "attribute",
+                        },
+                        b: {
+                            required: true,
+                            type: "attribute",
+                        },
+                        c: {
+                            required: true,
+                            type: "attribute",
                         }
-                    },
+                    }
                 }
-            },
-        },
-    },
-};
-            
-           const schema = create(schemaValidator);
-           schema.type();
-           schema.context();
-           const address = schema.address();
+            }
+
+const schema = create(schemaValidator);
+schema.type();
+schema.context();
+const address = schema.address();
+address.type();
+address.city();
+address.zip();
 
 
+const other = schema.other();
+other.a("valueA");
+other.b("valueB");
+other.c("valueC");
 
-           address.test().city().zips().code()
-           
-            address.type("Velletri");
-
-            address.city("Velletri");
-            address.zip("00049");
-
-            console.log(" ---- address.valid() ---- ")
-            console.log("IS_VALID : ", address.valid(), address.get())
-            console.log(" ---- address.valid() ---- ")
-
-            // address.street("Via Lepetit, 8");
-            
-            // address.region("Lombardia");
-            // address.countryCode("It");
-            // Object.keys(data.address).forEach(key => address.att(key, data.address[key]))
-            
-            // address.city();
-            // const pippo = address.ele("pippo").type("Pippo");
-
-            data.openingHoursSpecification.forEach(({ dayofWeek, opens, closes }, index) => {
-                const openingHoursSpecification = schema.ele("openingHoursSpecification");
-                openingHoursSpecification.dayofWeek(dayofWeek)
-                openingHoursSpecification.opens(opens)
-                openingHoursSpecification.closes(closes)
-                let c =  openingHoursSpecification.ele("other").att("a", index).att("b", index).att("c", index).att("e", index);
-                // c.ele("d").att("z", index); 
-                // c.ele("d").att("z", index); 
-
-                let d = openingHoursSpecification.ele("other").att("a", index).att("b", index).att("c", index);
-                // d.ele("d").att("z", index)
-                // d.ele("d").att("z", index);
-                // openingHoursSpecification.ele("other").att("a", index).att("b", index).att("c", index).ele("d").att("z", index)
-
-            });
-
-
-            const output = `<schema>
-                                <address @type="PostalAddress" city="Milano" etc.. />
-                                <openingHoursSpecification dayofWeek="1" opens="2">
-                                    <other a="0" />
-                                    <other b="0" />
-                                <openingHoursSpecification/>
-                                <openingHoursSpecification dayofWeek="1" opens="2">
-                                    <other a="1" />
-                                    <other b="1" />
-                                <openingHoursSpecification/>
-                                <openingHoursSpecification dayofWeek="1" opens="2">
-                                    <other a="2" />
-                                    <other b="2" />
-                                <openingHoursSpecification/>
-                            </schema>`
- 
-            /* console.log(address.next().next().next().lastChild().root().get())     
-
-
-            console.log(address.next().lastChild().get())
-            console.log(address.next().next().lastChild().get())     
-            console.log(address.next().next().next().lastChild().get())     
-
-            // console.log(address.next().firstChild().next().next().get())     
-
-            // console.log(address.next().next().firstChild().next().next().get())
-            // console.log(address.firstChild().get())
-            console.log(address.get())
-            console.log(address.next().get())
-            console.log(address.next().next().get())
-            console.log(address.next().next().next().get())
-            console.log(" - - - - - - - - - - - - - - - - - - - - - - - ")
-            console.log(address.next().next().next().get())
-            console.log(address.next().next().next().prev().get())
-            console.log(address.next().next().next().prev().prev().get())
-            console.log(address.next().next().next().prev().prev().prev().get())
-            console.log(" - - - - - - - - - - - - - - - - - - - - - - - ")
-
-            // console.log("TEST ", schema.next().root().get())
-            
-            console.log("TEST DONE ON ", address.next().next().get())
-            console.log("TEST ", address.next().next().valid())
-
-
-            // console.log("TEST DONE ON ", schema.get())
-            // console.log("TEST ", schema.valid()) */
-
-            console.log(schema.get());
-            console.log(schema.stringify())  
+console.log( schema.stringify())
         </script>
 
     </body>

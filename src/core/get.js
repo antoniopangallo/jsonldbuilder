@@ -1,10 +1,9 @@
 /**
- * Given a nodePros it returns the `get` func
- * once it's called within a node context it returns object state of the node.
+ * It returns object state of the node.
  *
  *
  * @since 1.0.0
- * @category Function
+ * @function
  * @returns {Object} the state of the node
  * @example
  *

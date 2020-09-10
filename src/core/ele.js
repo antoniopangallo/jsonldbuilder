@@ -1,12 +1,11 @@
 import { isDefined, isArray } from "./../utils/";
 
 /**
- *  Given a nodePros it returns the `ele` func
- *  once it's called within a node context it creates a new node.
+ *  It creates a new node.
  *
  *
  * @since 1.0.0
- * @category Function
+ * @function
  * @param {string} key the node name.
  * @param {string} [type=object] - force the node to be either an object or array by default.
  * @returns {Object} Node created

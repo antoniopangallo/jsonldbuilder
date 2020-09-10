@@ -1,14 +1,13 @@
 import { isDefined } from "./../utils/";
 
 /**
- * Given a nodePros it returns the `getRoot` func
- * once it's called within a node context it returns root node.
+ * It returns root node.
  * root() can be called from anynode at any level
  *
  *
  * @since 1.0.0
- * @category Function
- * @returns {Object)} the root node
+ * @function
+ * @returns {Object} the root node
  * @example
  *
  * import { create } from "jsonldbuilder"
@@ -19,7 +18,7 @@ import { isDefined } from "./../utils/";
  *
  */
 
-export const getRoot = (nodeProps) => ({
+export const root = (nodeProps) => ({
   /* if rootElementNode is null it means that the method
          has been invoked on the root node of the Tree before creating any child node */
   root() {
