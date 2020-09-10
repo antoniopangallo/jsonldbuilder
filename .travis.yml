@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - "10.16.3"
+branches:
+  only:
+    - master
+cache: npm
+script:
+  - echo 'Build docs!'
+  - npm run docz:build
+  - rm .gitignore
+deploy:
+  provider: pages
+  skip_cleanup: true
+  verbose: true
+  local_dir: docs
+  github_token: $GITHUB_TOKEN
+  on:
+    branch: master
