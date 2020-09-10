@@ -1,8 +1,7 @@
 import { isDefined } from "./../utils/";
 
 /**
- * Given a nodePros it returns the `firstChild` func
- * once it's called within a node context it returns the first node child if any.
+ * It returns the first node child if any.
  *
  *
  * @since 1.0.0

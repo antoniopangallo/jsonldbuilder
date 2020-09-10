@@ -1,8 +1,7 @@
 import { isDefined, isArray } from "./../utils/";
 
 /**
- *  Given a nodePros it returns the `att` func
- *  once it's called within a node context it adds a new attribute into the node.
+ * It adds a new attribute into the node.
  *
  *
  * @since 1.0.0

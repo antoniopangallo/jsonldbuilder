@@ -1,6 +1,5 @@
 /**
- *  Given a nodePros it returns the `children` func
- *  once it's called within a node context it returns an array of children nodes.
+ * It returns an array of children nodes.
  *
  *
  * @since 1.0.0

@@ -1,8 +1,7 @@
 import { isDefined } from "./../utils/";
 
 /**
- * Given a nodePros it returns the `next` func
- * once it's called within a node context it returns the sibilign node.
+ * It returns the sibilign node.
  *
  *
  * @since 1.0.0

@@ -1,6 +1,5 @@
 /**
- * Given a nodePros it returns the `stringify` func
- * once it's called within a node context it returns the stringify object state of the node.
+ * It returns the stringify object state of the node.
  *
  *
  * @since 1.0.0

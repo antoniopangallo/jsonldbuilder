@@ -1,8 +1,7 @@
 import { isDefined, isArray } from "./../utils/";
 
 /**
- *  Given a nodePros it returns the `ele` func
- *  once it's called within a node context it creates a new node.
+ *  It creates a new node.
  *
  *
  * @since 1.0.0

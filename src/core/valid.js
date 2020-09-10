@@ -1,8 +1,7 @@
 import { isDefined } from "./../utils/";
 
 /**
- *  Given a nodePros it returns the `valid` func
- *  once it's called within a node context it validates the node against a schema.
+ *  It's called within a node context it validates the node against a schema.
  *
  *
  * @since 1.0.0

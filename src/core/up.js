@@ -1,6 +1,5 @@
 /**
- * Given a nodePros it returns the `up` func
- * once it's called within a node context it returns the parent node.
+ * It's called within a node context it returns the parent node.
  *
  *
  * @since 1.0.0
