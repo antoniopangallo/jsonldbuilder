@@ -2,7 +2,7 @@
   "name": "jsonldbuilder",
   "description": "jsonldbuilder",
   "version": "1.0.0-alpha.0",
-  "main": "index.js",
+  "main": "./build/index.js",
   "scripts": {
     "build": "npm run clean && node ./build_config/prod.js",
     "clean": "rimraf build coverage",
