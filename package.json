@@ -1,6 +1,6 @@
 {
   "name": "jsonldbuilder",
-  "description": "json-ld builder",
+  "description": "jsonldbuilder",
   "version": "1.0.0-alpha.0",
   "main": "index.js",
   "scripts": {
@@ -30,7 +30,7 @@
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.1.0",
     "better-docs": "^2.3.2",
-    "browser-sync": "^2.26.7",
+    "browser-sync": "^2.26.12",
     "child_process": "^1.0.2",
     "concurrently": "^5.2.0",
     "coveralls": "^3.0.13",
@@ -46,7 +46,7 @@
     "rimraf": "^3.0.2",
     "rollup": "^2.7.1",
     "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-terser": "^5.3.0"
+    "rollup-plugin-terser": "^7.0.2"
   },
   "engines": {
     "node": ">=10.0.0",
