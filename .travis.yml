@@ -7,7 +7,7 @@ branches:
 cache: npm
 script:
   - echo 'Build docs!'
-  - npm run docz:build
+  - npm run jsdoc
   - rm .gitignore
 deploy:
   provider: pages
