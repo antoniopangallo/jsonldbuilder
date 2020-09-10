@@ -9,7 +9,7 @@ npm install jsonldbuilder
 create()
 A JSON-LD document is created by calling the create function.
 
-### Usage:
+### Usage with schema:
 
 ``` js
 import create from "jsonldbuilder"
@@ -87,6 +87,49 @@ const other1 = schema.other();
 other.a("other1A");
 other.b("other1B");
 other.c("other1C");
+```
+
+will result in:
+
+``` json
+{   
+    "@type":"AutoDealer",
+    "@context":"http://schema.org",
+    "address": { 
+        "@type":"PostalAddress",
+        "city":"Milano",
+        "zip":"12345"
+    },
+    "other": [ 
+        {"a": "otherA", "b": "otherB", "c": "otherC"}, 
+        {"a": "other1A", "b": "other1B", "c": "other1C"} 
+    ]
+}
+```
+
+### Usage without schema:
+
+```javascript
+import create from "jsonldbuilder"
+
+const schema = create();
+schema.att("@type", "AutoDealer");
+schema.att("@context", "AutoDealer");
+
+const address = schema.ele("address");
+address.att("@type", "PostalAddress");
+address.att("city", "MI");
+address.att("zip", "123");
+
+const other = schema.ele("other");
+other.att("a", "otherA");
+other.att("b", "otherB");
+other.att("c", "otherC");
+
+const other1 = schema.ele("other");
+other.att("a", "other1A");
+other.att("b", "other1B");
+other.att("c", "other1C");
 ```
 
 will result in:
