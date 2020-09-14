@@ -9,7 +9,7 @@ npm install jsonldbuilder
 create()
 A JSON-LD document is created by calling the create function.
 
-Documentation: [https://antoniopangallo.github.io/jsonldbuilder/](https://iusehooks.github.io/usetheform/)
+Documentation: [https://antoniopangallo.github.io/jsonldbuilder/](https://antoniopangallo.github.io/jsonldbuilder/)
 
 ### Usage with schema:
 
