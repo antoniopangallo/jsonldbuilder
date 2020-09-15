@@ -14,7 +14,7 @@ Documentation: [https://antoniopangallo.github.io/jsonldbuilder/](https://antoni
 ### Usage with schema:
 
 ``` js
-import create from "jsonldbuilder"
+import { create } from "jsonldbuilder";
 
 const schemaValidator = {
     "@type": {
@@ -112,7 +112,8 @@ will result in:
 ### Usage without schema:
 
 ```javascript
-import create from "jsonldbuilder"
+import { create } from "jsonldbuilder";
+
 
 const schema = create();
 schema.att("@type", "AutoDealer");
